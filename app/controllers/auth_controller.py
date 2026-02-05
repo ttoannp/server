@@ -51,8 +51,10 @@ def login():
         result = user_service.login(username, password)
     except ValueError as e:
         return jsonify({"error": str(e)}), 401
-    except Exception:
-        return jsonify({"error": "Lỗi server"}), 500
+    except Exception as e:
+        print("LOGIN ERROR:", repr(e))
+        return jsonify({"error": str(e)}), 500
+
 
     return jsonify({"token": result.token, "user": result.user.to_json()}), 200
 
