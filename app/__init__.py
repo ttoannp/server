@@ -21,8 +21,7 @@ def create_app():
     from app.models.attempt_model import ExamAttempt, Answer  # noqa: F401
 
     Migrate(app, db)
-    CORS(app, resources={r"/api/*": {"origins": ["https://client-webkiemtra.vercel.app/"]}})
-    # --- Đăng ký các blueprint (controller) ---
+    CORS(app, resources={r"/*": {"origins": ["https://client-webkiemtra.vercel.app"]}}, supports_credentials=True)    # --- Đăng ký các blueprint (controller) ---
     from app.controllers.exam_controller import exam_bp
     from app.controllers.auth_controller import auth_bp
 
